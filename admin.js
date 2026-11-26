@@ -36,14 +36,15 @@ throw Error('Conta nao autorizada.');
 const r=await request('/git/ref/heads/main');head=r.object.sha;const cfg=await request('/contents/personalizacao.json?ref='+encodeURIComponent(head));draft=normalize(JSON.parse(from64(cfg.content)));pending={};ready=true;render();status('Conectado ao repositório. As alterações serão publicadas na branch main.');}catch(e){token='';head='';status(e.message,true);}finally{busy=false;buttons();}};
 $('disconnect').onclick=()=>{ready=false;pending={};token='';head='';$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';buttons();status('Desconectado. O token não foi armazenado.');};
 
-function exitAdmin(){
-    if(busy){
-        alert('Publicacao em andamento.');
-        return;
-    }
-    if(!confirm('Sair do painel? Alteracoes nao publicadas serao descartadas.'))return;
-    $('disconnect').click();
-    location.replace('./');
+function exitAdmin(event){
+    if(event)event.preventDefault();
+    token='';
+    head='';
+    ready=false;
+    pending={};
+    document.body.classList.add('admin-locked');
+    document.getElementById('token').value='';
+    window.location.replace('/marinacoutoadvocaciainss/');
 }
 $('exit-admin').onclick=exitAdmin;
 $('exit-bottom').onclick=exitAdmin;
