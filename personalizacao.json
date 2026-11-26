@@ -12,33 +12,33 @@
   },
   "photos": {
     "hero": {
-      "enabled": true,
-      "path": "img/marina-hero.jpg"
-    },
-    "logo": {
-      "enabled": true,
-      "path": "img/marina-logo.jpg"
+      "path": "img/marina-hero.jpg",
+      "enabled": true
     },
     "sobre": {
-      "enabled": true,
-      "path": "img/marina-sobre.jpg"
+      "path": "img/marina-sobre.jpg",
+      "enabled": true
     },
-    "team": {
-      "enabled": true,
-      "path": "img/marina-team.jpg"
-    },
-    "entry": {
-      "enabled": true,
-      "path": "img/marina-entry.jpg"
+    "logo": {
+      "path": "img/marina-logo.jpg",
+      "enabled": true
     },
     "office": {
-      "enabled": true,
-      "path": "img/marina-office.jpg"
+      "path": "img/marina-office.jpg",
+      "enabled": true
+    },
+    "team": {
+      "path": "img/marina-team.jpg",
+      "enabled": true
+    },
+    "entry": {
+      "path": "img/marina-entry.jpg",
+      "enabled": true
     },
     "facade": {
-      "enabled": true,
-      "path": "img/marina-facade.jpg"
+      "path": "img/marina-facade.jpg",
+      "enabled": true
     }
   },
-  "revision": "1"
+  "revision": "1795721127756"
 }
