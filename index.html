@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marina Couto | Advocacia Previdenciária Especializada</title>
+<meta name="description" content="Assessoria jurídica especializada em Direito Previdenciário e benefícios do INSS. Aposentadorias, BPC/LOAS, Auxílio-Doença e Revisões com atendimento humanizado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      colors: {
+        navy: { 950: '#081326', 900: '#0E2244', 800: '#16315E', 700: '#24457A' },
+        gold: { 400: '#E2B949', 500: '#C59B27', 600: '#A67F1A', 700: '#856412' }
+      },
+      boxShadow: {
+        'soft': '0 10px 40px -10px rgba(14, 34, 68, 0.10)',
+      }
+    }
+  }
+}
+</script>
+<style>
+.hero-pattern {
+  background-color: #0E2244;
+  background-image: radial-gradient(rgba(197, 155, 39, 0.14) 1px, transparent 1px),
+                    radial-gradient(rgba(255, 255, 255, 0.04) 1px, #0E2244 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+.gold-gradient-text {
+  background: linear-gradient(135deg, #E2B949 0%, #C59B27 50%, #F3D179 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  70% { transform: scale(1.25); opacity: 0; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+.whatsapp-pulse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: #16A34A;
+  animation: pulse-ring 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  z-index: -1;
+}
+.photo-dropzone.drag-over {
+  outline: 3px dashed #C59B27;
+  outline-offset: 4px;
+}
+</style>
+</head>
+
+<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-gold-500 selection:text-white">
+
+<!-- ==================== HEADER ==================== -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-lg bg-navy-900 flex items-center justify-center border border-gold-500/40 shadow-sm group-hover:border-gold-500 transition-colors p-1.5">
+          <svg viewBox="0 0 120 80" class="w-full h-full stroke-slate-100 fill-none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 66 V16 L36 46 L60 16 V66" />
+            <path d="M18 16 L36 38" stroke-opacity="0.75" stroke-width="2" />
+            <path d="M106 24 C95 13, 73 13, 64 26" />
+            <path d="M64 54 C73 67, 95 67, 106 56" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-xl text-navy-900 leading-none tracking-tight">Marina Couto</span>
+          <span class="text-[10px] uppercase tracking-[0.24em] text-gold-600 font-semibold mt-1">Advogada • Previdenciário</span>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center space-x-7">
+        <a href="#areas-atuacao" class="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">Áreas de Atuação</a>
+        <a href="#triagem-interativa" class="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">Analisar Meu Caso</a>
+        <a href="#sobre" class="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">Sobre a Advogada</a>
+        <a href="#escritorio" class="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">Nosso Escritório</a>
+        <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">Dúvidas</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Gostaria de falar com uma especialista sobre meu benefício do INSS.')"
+                class="hidden sm:inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white text-sm font-semibold px-5 py-2.5 rounded-lg border border-gold-500/30 shadow-sm transition-all cursor-pointer">
+          <i data-lucide="message-circle" class="w-4 h-4 text-gold-400"></i>
+          <span>Falar com Especialista</span>
+        </button>
+        <button id="mobile-menu-btn" aria-label="Abrir menu" class="lg:hidden p-2.5 rounded-lg text-navy-900 hover:bg-slate-100 transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+    <a href="#areas-atuacao" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Áreas de Atuação</a>
+    <a href="#triagem-interativa" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Analisar Meu Caso</a>
+    <a href="#sobre" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Sobre a Advogada</a>
+    <a href="#escritorio" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Conheça Nosso Escritório</a>
+    <a href="#faq" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Perguntas Frequentes</a>
+    <div class="pt-2">
+      <button onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Gostaria de falar com uma especialista sobre meu benefício do INSS.')"
+              class="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-3 rounded-lg shadow-sm">
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+        <span>Atendimento via WhatsApp</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero-pattern relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 text-white">
+  <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+
+      <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800/90 border border-gold-500/40 text-gold-400 text-xs sm:text-sm font-medium">
+          <i data-lucide="shield-check" class="w-4 h-4 text-gold-400"></i>
+          <span>Especialista em Benefícios do INSS • <span class="dynamic-oab">OAB/GO 56.049</span></span>
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[52px] font-bold leading-[1.15] tracking-tight text-white">
+          Garanta o seu direito junto ao INSS com <span class="gold-gradient-text">segurança e agilidade.</span>
+        </h1>
+
+        <p class="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          Atendimento jurídico humanizado e estratégico para conquistar sua <strong>Aposentadoria, Auxílio-Acidente, Benefício Assistencial (BPC/LOAS PcD) ou Auxílio-Doença</strong> — sem burocracia e com total transparência.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 pt-2">
+          <button onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Vim pelo site e gostaria de orientação sobre meu benefício do INSS.')"
+                  class="group flex items-center justify-center gap-3 bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-base sm:text-lg px-7 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.661 1.435 5.174L2 22l4.985-1.399C8.445 21.487 10.163 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            <span>Falar Agora no WhatsApp</span>
+          </button>
+          <a href="#triagem-interativa" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 font-semibold text-base px-6 py-4 rounded-xl backdrop-blur-sm transition-all">
+            <i data-lucide="clipboard-check" class="w-5 h-5 text-gold-400"></i>
+            <span>Analisar Meu Caso</span>
+          </a>
+        </div>
+
+        <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-400">
+          <span class="flex items-center gap-1.5"><i data-lucide="globe" class="w-4 h-4 text-gold-400"></i> Atendimento 100% Online em todo o Brasil</span>
+          <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-gold-400"></i> Presencial no Setor Universitário, <span class="dynamic-city">Goiânia/GO</span></span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <div class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-gold-500/30 via-transparent to-gold-400/20 blur-sm"></div>
+          <div class="relative bg-navy-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-7 shadow-2xl backdrop-blur-md">
+            <div data-photo-slot="hero" ondragover="handleSlotDragOver(event)" ondragleave="handleSlotDragLeave(event)" ondrop="handleSlotDrop(event, 'hero')" class="photo-dropzone group relative rounded-xl overflow-hidden bg-gradient-to-b from-navy-800 to-navy-950 aspect-square mb-6 border border-slate-600/60 flex items-center justify-center">
+              <img id="slot-img-hero" src="img/marina-hero.jpg" onerror="handleImageFallback(this, 'hero')" alt="Dra. Marina Couto" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]">
+              <div id="slot-fallback-hero" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-navy-800 via-navy-900 to-navy-950">
+                <div class="w-20 h-20 rounded-2xl bg-navy-950/90 border border-gold-500/40 flex items-center justify-center p-3 mb-4 shadow-lg">
+                  <svg viewBox="0 0 120 80" class="w-full h-full stroke-slate-100 fill-none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 66 V16 L36 46 L60 16 V66" />
+                    <path d="M106 24 C95 13, 73 13, 64 26" />
+                    <path d="M64 54 C73 67, 95 67, 106 56" />
+                  </svg>
+                </div>
+                <p class="font-serif text-lg font-bold text-white">Foto Principal</p>
+                <p class="text-xs text-slate-300 mt-1">Clique em "Carregar Foto"</p>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+              <button type="button" onclick="triggerSlotUpload('hero')" title="Trocar foto"
+                      class="absolute top-3 left-3 z-20 inline-flex items-center gap-1.5 bg-navy-950/80 hover:bg-gold-500 text-slate-200 hover:text-navy-950 border border-white/15 text-[11px] font-semibold px-2.5 py-1.5 rounded-lg backdrop-blur-md transition-all cursor-pointer">
+                <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                <span>Carregar Foto</span>
+              </button>
+              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                <div>
+                  <p class="font-serif text-xl font-bold text-white">Dra. Marina Couto</p>
+                  <p class="text-xs text-gold-400 font-medium tracking-wide uppercase">Advogada Previdenciarista • <span class="dynamic-oab">OAB/GO 56.049</span></p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-navy-900/90 border border-gold-400/50 flex items-center justify-center backdrop-blur-md p-1.5">
+                  <svg viewBox="0 0 120 80" class="w-full h-full stroke-gold-400 fill-none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 66 V16 L36 46 L60 16 V66" />
+                    <path d="M106 24 C95 13, 73 13, 64 26" />
+                    <path d="M64 54 C73 67, 95 67, 106 56" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 text-center pt-1">
+              <div class="bg-navy-900/90 border border-slate-700/70 rounded-xl p-3">
+                <p class="font-serif text-base sm:text-lg font-bold text-gold-400">INSS</p>
+                <p class="text-[11px] text-slate-300 leading-tight mt-1">Administrativo e Judicial</p>
+              </div>
+              <div class="bg-navy-900/90 border border-slate-700/70 rounded-xl p-3">
+                <p class="font-serif text-base sm:text-lg font-bold text-white">Brasil</p>
+                <p class="text-[11px] text-slate-300 leading-tight mt-1">100% Online</p>
+              </div>
+              <div class="bg-navy-900/90 border border-slate-700/70 rounded-xl p-3">
+                <p class="font-serif text-base sm:text-lg font-bold text-gold-400">Análise</p>
+                <p class="text-[11px] text-slate-300 leading-tight mt-1">CNIS e Laudos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CREDIBILIDADE ==================== -->
+<section class="relative -mt-8 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="bg-white rounded-2xl shadow-soft border border-slate-200/80 p-6 sm:p-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+      <div class="flex items-start gap-4 pt-2 md:pt-0">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/70 flex items-center justify-center shrink-0"><i data-lucide="laptop" class="w-6 h-6 text-gold-600"></i></div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 text-lg">Atendimento Digital ou Presencial</h3>
+          <p class="text-sm text-slate-600 mt-1 leading-relaxed">Resolva tudo pelo celular com segurança ou agende sua visita.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 pt-6 md:pt-0 md:pl-8">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/70 flex items-center justify-center shrink-0"><i data-lucide="file-search" class="w-6 h-6 text-gold-600"></i></div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 text-lg">Análise Completa do Histórico</h3>
+          <p class="text-sm text-slate-600 mt-1 leading-relaxed">Avaliamos cada vínculo, sequelas, laudos e falhas no CNIS.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 pt-6 md:pt-0 md:pl-8">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/70 flex items-center justify-center shrink-0"><i data-lucide="heart-handshake" class="w-6 h-6 text-gold-600"></i></div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 text-lg">Transparência em Cada Etapa</h3>
+          <p class="text-sm text-slate-600 mt-1 leading-relaxed">Linguagem clara, sem "juridiquês", com você sempre informado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ÁREAS DE ATUAÇÃO ==================== -->
+<section id="areas-atuacao" class="py-20 lg:py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Especialidades Previdenciárias</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 mt-2">Como podemos defender o seu direito?</h2>
+      <p class="text-slate-600 mt-4 text-base sm:text-lg">Atuamos na via administrativa (INSS) e na Justiça Federal.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+      <div class="relative bg-white rounded-2xl p-7 sm:p-8 border-2 border-gold-500/50 shadow-soft flex flex-col justify-between">
+        <div class="absolute -top-3.5 left-7 bg-navy-900 text-gold-400 text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full border border-gold-500/40">Indenização Acumulável com Salário</div>
+        <div>
+          <div class="flex items-center gap-4 mb-5 mt-1">
+            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center shrink-0"><i data-lucide="shield-alert" class="w-7 h-7"></i></div>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-navy-900">Auxílio-Acidente</h3>
+              <p class="text-xs font-semibold text-gold-700 uppercase tracking-wide">Para quem ficou com sequela</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">É uma <strong>indenização mensal paga pelo INSS</strong> ao segurado que sofreu acidente e ficou com <strong>sequela permanente</strong> que reduz a capacidade para o trabalho habitual.</p>
+          <ul class="space-y-2 text-sm text-slate-700 bg-amber-50/60 border border-amber-200/70 rounded-xl p-4 mb-5">
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-600 shrink-0 mt-0.5"></i><span><strong>Acumula com o salário.</strong></span></li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-600 shrink-0 mt-0.5"></i><span><strong>Não exige carência.</strong></span></li>
+          </ul>
+        </div>
+        <button onclick="selectTopicAndScroll('Auxílio-Acidente (Sequela de acidente)')" class="w-full py-3.5 px-5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <span>Analisar Meu Direito</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gold-400"></i>
+        </button>
+      </div>
+
+      <div class="relative bg-white rounded-2xl p-7 sm:p-8 border-2 border-gold-500/50 shadow-soft flex flex-col justify-between">
+        <div class="absolute -top-3.5 left-7 bg-navy-900 text-gold-400 text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full border border-gold-500/40">Não Exige Contribuição ao INSS</div>
+        <div>
+          <div class="flex items-center gap-4 mb-5 mt-1">
+            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center shrink-0"><i data-lucide="accessibility" class="w-7 h-7"></i></div>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-navy-900">BPC / LOAS PcD</h3>
+              <p class="text-xs font-semibold text-gold-700 uppercase tracking-wide">1 Salário Mínimo Mensal</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">Garante <strong>1 salário mínimo mensal</strong> à pessoa com deficiência de longo prazo ou idoso de baixa renda.</p>
+          <ul class="space-y-2 text-sm text-slate-700 bg-amber-50/60 border border-amber-200/70 rounded-xl p-4 mb-5">
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-600 shrink-0 mt-0.5"></i><span><strong>Sem contribuição prévia.</strong></span></li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-600 shrink-0 mt-0.5"></i><span><strong>Abatimento de gastos médicos.</strong></span></li>
+          </ul>
+        </div>
+        <button onclick="selectTopicAndScroll('BPC / LOAS (Portador de Deficiência ou Idoso)')" class="w-full py-3.5 px-5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <span>Consultar BPC / LOAS</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gold-400"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-soft hover:border-gold-500/50 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-11 h-11 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform"><i data-lucide="award" class="w-5 h-5"></i></div>
+          <h3 class="font-serif text-lg font-bold text-navy-900 mb-2">Aposentadoria por Idade</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Regras de transição, tempo rural, serviço militar e períodos sem registro.</p>
+        </div>
+        <button onclick="selectTopicAndScroll('Aposentadoria por Idade / Tempo')" class="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-navy-900 text-navy-900 hover:text-white font-semibold text-xs sm:text-sm border border-slate-200 hover:border-navy-900 flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <span>Consultar</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-soft hover:border-gold-500/50 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-11 h-11 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform"><i data-lucide="hard-hat" class="w-5 h-5"></i></div>
+          <h3 class="font-serif text-lg font-bold text-navy-900 mb-2">Aposentadoria Especial</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Ruído, agentes químicos, biológicos, eletricidade ou vigilância armada.</p>
+        </div>
+        <button onclick="selectTopicAndScroll('Aposentadoria Especial')" class="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-navy-900 text-navy-900 hover:text-white font-semibold text-xs sm:text-sm border border-slate-200 hover:border-navy-900 flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <span>Consultar</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-soft hover:border-gold-500/50 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-11 h-11 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform"><i data-lucide="heart-pulse" class="w-5 h-5"></i></div>
+          <h3 class="font-serif text-lg font-bold text-navy-900 mb-2">Auxílio-Doença</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Para quem está incapacitado e teve o benefício negado ou cortado.</p>
+        </div>
+        <button onclick="selectTopicAndScroll('Auxílio-Doença / Invalidez')" class="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-navy-900 text-navy-900 hover:text-white font-semibold text-xs sm:text-sm border border-slate-200 hover:border-navy-900 flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <span>Consultar</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-soft hover:border-gold-500/50 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-11 h-11 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform"><i data-lucide="calculator" class="w-5 h-5"></i></div>
+          <h3 class="font-serif text-lg font-bold text-navy-900 mb-2">Pensão e Revisões</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">Dependentes e revisão de valores pagos a menor pelo INSS.</p>
+        </div>
+        <button onclick="selectTopicAndScroll('Pensão por Morte / Revisão de Benefício')" class="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-navy-900 text-navy-900 hover:text-white font-semibold text-xs sm:text-sm border border-slate-200 hover:border-navy-900 flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <span>Consultar</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRIAGEM ==================== -->
+<section id="triagem-interativa" class="py-20 bg-navy-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#C59B27 1px, transparent 1px); background-size: 24px 24px;"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-10">
+      <span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs font-bold uppercase tracking-widest mb-3">Triagem Prévia Gratuita</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Descubra qual é o seu caso em 3 passos</h2>
+      <p class="text-slate-300 mt-3 text-base sm:text-lg max-w-2xl mx-auto">Responda rapidamente para prepararmos seu atendimento.</p>
+    </div>
+
+    <div class="bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+      <div class="bg-slate-100 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+        <span id="step-indicator-text" class="text-xs font-bold uppercase tracking-wider text-navy-900">Passo 1 de 3</span>
+        <div class="w-36 sm:w-48 h-2 bg-slate-200 rounded-full overflow-hidden">
+          <div id="step-progress-bar" class="h-full bg-gold-500 transition-all duration-300" style="width: 33.33%;"></div>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-10">
+        <div id="triage-step-1" class="space-y-5">
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-navy-900">1. Qual benefício você busca?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <button type="button" onclick="chooseBenefit('Auxílio-Acidente (Sequela de acidente)')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <div><span class="font-bold text-navy-900 text-sm sm:text-base block">Auxílio-Acidente</span><span class="text-xs text-slate-500">Sequela de acidente</span></div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseBenefit('BPC / LOAS (Portador de Deficiência ou Idoso)')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <div><span class="font-bold text-navy-900 text-sm sm:text-base block">BPC / LOAS</span><span class="text-xs text-slate-500">Sem contribuição</span></div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseBenefit('Aposentadoria por Idade / Tempo')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <div><span class="font-bold text-navy-900 text-sm sm:text-base block">Quero me aposentar</span><span class="text-xs text-slate-500">Idade, tempo ou especial</span></div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseBenefit('Auxílio-Doença / Invalidez')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <div><span class="font-bold text-navy-900 text-sm sm:text-base block">Auxílio-Doença</span><span class="text-xs text-slate-500">Incapacidade</span></div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseBenefit('Pedido Negado ou Cortado pelo INSS')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <div><span class="font-bold text-navy-900 text-sm sm:text-base block">Pedido negado / cortado</span><span class="text-xs text-slate-500">Recurso ou ação</span></div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseBenefit('Pensão por Morte / Revisão de Benefício')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <div><span class="font-bold text-navy-900 text-sm sm:text-base block">Pensão / Revisão</span><span class="text-xs text-slate-500">Dependentes ou cálculo</span></div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="triage-step-2" class="hidden space-y-5">
+          <div class="flex items-center justify-between">
+            <span id="selected-benefit-badge" class="text-xs font-semibold bg-navy-900 text-gold-400 px-3 py-1 rounded-full">Assunto</span>
+            <button type="button" onclick="goToStep(1)" class="text-xs font-semibold text-slate-500 hover:text-navy-900 flex items-center gap-1 cursor-pointer">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Voltar
+            </button>
+          </div>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-navy-900">2. Qual sua situação?</h3>
+          <div class="grid grid-cols-1 gap-3 pt-1">
+            <button type="button" onclick="chooseSituation('Sofreu acidente e ficou com sequela permanente')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <span class="font-medium text-navy-900 text-sm sm:text-base">Sofri acidente e fiquei com sequela</span>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseSituation('Pessoa com deficiência ou idoso +65 de baixa renda')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <span class="font-medium text-navy-900 text-sm sm:text-base">Pessoa com deficiência ou idoso de baixa renda</span>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseSituation('Já contribuiu vários anos e busca aposentadoria')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <span class="font-medium text-navy-900 text-sm sm:text-base">Já contribuí e quero me aposentar</span>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+            <button type="button" onclick="chooseSituation('Está incapacitado ou teve benefício negado/cortado')" class="text-left p-4 rounded-xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/40 transition-all flex items-center justify-between group cursor-pointer">
+              <span class="font-medium text-navy-900 text-sm sm:text-base">Estou incapacitado ou tive pedido negado</span>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-gold-600 shrink-0"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="triage-step-3" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-50 border border-green-200 px-3 py-1 rounded-full flex items-center gap-1.5">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Pré-análise pronta
+            </span>
+            <button type="button" onclick="goToStep(2)" class="text-xs font-semibold text-slate-500 hover:text-navy-900 flex items-center gap-1 cursor-pointer">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Alterar
+            </button>
+          </div>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-navy-900">3. Receba sua orientação</h3>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-sm">
+            <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+              <span class="text-slate-500">Benefício:</span>
+              <span id="summary-benefit" class="font-bold text-navy-900">—</span>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 border-t border-slate-200/70 pt-2">
+              <span class="text-slate-500">Situação:</span>
+              <span id="summary-situation" class="font-semibold text-slate-700">—</span>
+            </div>
+          </div>
+          <form id="triage-form" onsubmit="submitTriage(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="client-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Nome Completo *</label>
+                <input type="text" id="client-name" required placeholder="Ex: João da Silva" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none text-sm">
+              </div>
+              <div>
+                <label for="client-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">WhatsApp (com DDD) *</label>
+                <input type="tel" id="client-phone" required placeholder="Ex: (62) 99284-4334" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none text-sm">
+              </div>
+            </div>
+            <button type="submit" class="w-full bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-base sm:text-lg py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3 cursor-pointer">
+              <i data-lucide="send" class="w-5 h-5"></i>
+              <span>Enviar Resumo e Falar com Especialista</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOBRE ==================== -->
+<section id="sobre" class="py-20 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 order-2 lg:order-1">
+        <div class="relative max-w-md mx-auto">
+          <div class="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-gold-500/40 pointer-events-none"></div>
+          <div data-photo-slot="sobre" ondragover="handleSlotDragOver(event)" ondragleave="handleSlotDragLeave(event)" ondrop="handleSlotDrop(event, 'sobre')" class="photo-dropzone group relative rounded-2xl overflow-hidden shadow-xl bg-navy-900 aspect-[4/5] border border-slate-200/80">
+            <img id="slot-img-sobre" src="img/marina-sobre.jpg" onerror="handleImageFallback(this, 'sobre')" alt="Dra. Marina Couto" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]">
+            <div id="slot-fallback-sobre" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-navy-800 via-navy-900 to-navy-950">
+              <div class="w-20 h-20 rounded-2xl bg-navy-950/90 border border-gold-500/40 flex items-center justify-center p-3 mb-4 shadow-lg">
+                <svg viewBox="0 0 120 80" class="w-full h-full stroke-slate-100 fill-none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 66 V16 L36 46 L60 16 V66" />
+                  <path d="M106 24 C95 13, 73 13, 64 26" />
+                  <path d="M64 54 C73 67, 95 67, 106 56" />
+                </svg>
+              </div>
+              <p class="font-serif text-lg font-bold text-white">Retrato Institucional</p>
+              <p class="text-xs text-slate-300 mt-1">Clique em "Carregar Foto"</p>
+            </div>
+            <button type="button" onclick="triggerSlotUpload('sobre')" title="Trocar foto" class="absolute top-3 left-3 z-20 inline-flex items-center gap-1.5 bg-navy-950/80 hover:bg-gold-500 text-slate-200 hover:text-navy-950 border border-white/15 text-[11px] font-semibold px-2.5 py-1.5 rounded-lg backdrop-blur-md transition-all cursor-pointer">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+              <span>Carregar Foto</span>
+            </button>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white pointer-events-none">
+              <p class="font-serif text-2xl font-bold">Marina Couto</p>
+              <p class="text-gold-400 text-sm font-medium mt-0.5"><span class="dynamic-oab">OAB/GO 56.049</span> • Direito Previdenciário</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Compromisso e Ética Profissional</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 leading-tight">Advocacia previdenciária pautada no respeito à história de cada trabalhador e família.</h2>
+        <div class="space-y-4 text-slate-600 text-base leading-relaxed">
+          <p>Por trás de cada pedido no INSS existe uma vida inteira de trabalho, uma sequela de acidente que dificulta o sustento ou uma pessoa com deficiência que precisa de amparo digno. Nossa missão é transformar regras complexas em soluções claras, seguras e acessíveis.</p>
+          <p>Com atuação dedicada ao <strong>Direito Previdenciário</strong>, a <strong>Dra. Marina Couto</strong> lidera um atendimento próximo e criterioso, analisando minuciosamente cada documento, laudo médico e extrato contributivo antes de qualquer protocolo.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <i data-lucide="graduation-cap" class="w-6 h-6 text-gold-600 shrink-0 mt-0.5"></i>
+            <div><h4 class="font-semibold text-navy-900 text-sm">Formação e Atualização</h4><p class="text-xs text-slate-500 mt-0.5">Pós-graduação em Direito Previdenciário.</p></div>
+          </div>
+          <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <i data-lucide="shield-check" class="w-6 h-6 text-gold-600 shrink-0 mt-0.5"></i>
+            <div><h4 class="font-semibold text-navy-900 text-sm">Atuação Ética</h4><p class="text-xs text-slate-500 mt-0.5">Contrato claro, sem promessas vazias.</p></div>
+          </div>
+          <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <i data-lucide="users" class="w-6 h-6 text-gold-600 shrink-0 mt-0.5"></i>
+            <div><h4 class="font-semibold text-navy-900 text-sm">Atendimento Humanizado</h4><p class="text-xs text-slate-500 mt-0.5">Escuta atenta em todas as etapas.</p></div>
+          </div>
+          <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <i data-lucide="map-pin" class="w-6 h-6 text-gold-600 shrink-0 mt-0.5"></i>
+            <div><h4 class="font-semibold text-navy-900 text-sm">Presencial e Online</h4><p class="text-xs text-slate-500 mt-0.5">Goiânia/GO e todo o Brasil.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ESCRITÓRIO ==================== -->
+<section id="escritorio" class="py-20 lg:py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Estrutura Acolhedora</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 leading-tight">Um espaço pensado para receber você com conforto e privacidade.</h2>
+        <p class="text-slate-600 text-base leading-relaxed">Escritório no Setor Universitário, em Goiânia/GO, com fácil acesso. Para quem prefere praticidade, oferecemos atendimento 100% digital por videochamada e WhatsApp.</p>
+        <ul class="space-y-3 text-sm text-slate-700">
+          <li class="flex items-start gap-3"><i data-lucide="map-pin" class="w-5 h-5 text-gold-600 shrink-0 mt-0.5"></i><span class="dynamic-address">Setor Universitário, Goiânia/GO</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="clock" class="w-5 h-5 text-gold-600 shrink-0 mt-0.5"></i><span>Segunda a sexta, das 08h às 18h</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="video" class="w-5 h-5 text-gold-600 shrink-0 mt-0.5"></i><span>Atendimento por videochamada em todo o Brasil</span></li>
+        </ul>
+        <button onclick="openWhatsAppDirect('Olá! Gostaria de agendar uma visita ao escritório.')" class="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm px-6 py-3 rounded-xl border border-gold-500/30 shadow-sm transition-all cursor-pointer">
+          <i data-lucide="calendar-check" class="w-4 h-4 text-gold-400"></i> Agendar Visita
+        </button>
+      </div>
+      <div class="relative">
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-white">
+          <div class="aspect-[4/3] bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center p-8 text-center">
+            <div class="text-white">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-navy-950/80 border border-gold-500/40 flex items-center justify-center p-3 mb-4">
+                <svg viewBox="0 0 120 80" class="w-full h-full stroke-gold-400 fill-none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 66 V16 L36 46 L60 16 V66" />
+                  <path d="M106 24 C95 13, 73 13, 64 26" />
+                  <path d="M64 54 C73 67, 95 67, 106 56" />
+                </svg>
+              </div>
+              <p class="font-serif text-xl font-bold">Escritório Marina Couto</p>
+              <p class="text-slate-300 text-sm mt-1"><span class="dynamic-address">Setor Universitário, Goiânia/GO</span></p>
+              <p class="text-gold-400 text-xs mt-3">Atendimento com hora marcada</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" class="py-20 lg:py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Dúvidas Frequentes</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 mt-2">Perguntas Frequentes</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left font-semibold text-navy-900 hover:bg-slate-50 transition-colors" onclick="toggleFaq(this)">
+          <span>Preciso ir ao INSS ou o escritório resolve tudo?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold-600 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed">Cuidamos do agendamento, análise documental e acompanhamento. Em muitos casos, o cliente só precisa comparecer à perícia médica do INSS, quando convocado.</div>
+      </div>
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left font-semibold text-navy-900 hover:bg-slate-50 transition-colors" onclick="toggleFaq(this)">
+          <span>Quanto custa a consulta inicial?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold-600 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed">A triagem prévia pelo site é gratuita. Honorários são definidos com transparência após análise do caso, com contrato claro. Em ações judiciais, é possível trabalhar com honorários de êxito.</div>
+      </div>
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left font-semibold text-navy-900 hover:bg-slate-50 transition-colors" onclick="toggleFaq(this)">
+          <span>Meu pedido foi negado pelo INSS. Ainda tenho chance?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold-600 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed">Sim. A negativa administrativa não é o fim. Analisamos o motivo e, se houver direito, ingressamos com recurso ou ação judicial. Muitos benefícios são concedidos na Justiça.</div>
+      </div>
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left font-semibold text-navy-900 hover:bg-slate-50 transition-colors" onclick="toggleFaq(this)">
+          <span>O que é o Auxílio-Acidente?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold-600 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed">É uma indenização mensal paga a quem ficou com sequela permanente após acidente. Pode ser acumulado com o salário e não exige carência. Muitas pessoas não sabem que têm direito.</div>
+      </div>
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left font-semibold text-navy-900 hover:bg-slate-50 transition-colors" onclick="toggleFaq(this)">
+          <span>Como funciona o BPC/LOAS para pessoa com deficiência?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold-600 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed">É um benefício de 1 salário mínimo para pessoas com deficiência de longo prazo (mínimo 2 anos) e baixa renda familiar, sem contribuição ao INSS. Exige CadÚnico atualizado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA FINAL ==================== -->
+<section class="py-16 bg-navy-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#C59B27 1px, transparent 1px); background-size: 24px 24px;"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-4">Não deixe seu direito prescrever.</h2>
+    <p class="text-slate-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">Cada dia pode significar valores atrasados que você deixa de receber. Fale agora com nossa equipe.</p>
+    <button onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Quero garantir meus direitos previdenciários.')" class="inline-flex items-center gap-3 bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
+      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.661 1.435 5.174L2 22l4.985-1.399C8.445 21.487 10.163 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+      Falar com Especialista Agora
+    </button>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-navy-950 text-slate-400 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-lg bg-navy-900 flex items-center justify-center border border-gold-500/40 p-1.5">
+            <svg viewBox="0 0 120 80" class="w-full h-full stroke-slate-100 fill-none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 66 V16 L36 46 L60 16 V66" />
+              <path d="M18 16 L36 38" stroke-opacity="0.75" stroke-width="2" />
+              <path d="M106 24 C95 13, 73 13, 64 26" />
+              <path d="M64 54 C73 67, 95 67, 106 56" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-serif text-white font-bold text-lg leading-none">Marina Couto</p>
+            <p class="text-[10px] uppercase tracking-[0.24em] text-gold-500 font-semibold mt-1">Advocacia Previdenciária</p>
+          </div>
+        </div>
+        <p class="text-sm leading-relaxed">Assessoria jurídica especializada em benefícios do INSS, com atendimento humanizado.</p>
+        <p class="text-xs text-slate-500"><span class="dynamic-oab">OAB/GO 56.049</span></p>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Navegação</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#areas-atuacao" class="hover:text-gold-400 transition-colors">Áreas de Atuação</a></li>
+          <li><a href="#triagem-interativa" class="hover:text-gold-400 transition-colors">Analisar Meu Caso</a></li>
+          <li><a href="#sobre" class="hover:text-gold-400 transition-colors">Sobre a Advogada</a></li>
+          <li><a href="#escritorio" class="hover:text-gold-400 transition-colors">Nosso Escritório</a></li>
+          <li><a href="#faq" class="hover:text-gold-400 transition-colors">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Especialidades</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#areas-atuacao" class="hover:text-gold-400 transition-colors">Auxílio-Acidente</a></li>
+          <li><a href="#areas-atuacao" class="hover:text-gold-400 transition-colors">BPC / LOAS PcD</a></li>
+          <li><a href="#areas-atuacao" class="hover:text-gold-400 transition-colors">Aposentadorias</a></li>
+          <li><a href="#areas-atuacao" class="hover:text-gold-400 transition-colors">Auxílio-Doença</a></li>
+          <li><a href="#areas-atuacao" class="hover:text-gold-400 transition-colors">Pensão e Revisões</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contato</h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="phone" class="w-4 h-4 text-gold-500 shrink-0 mt-0.5"></i><span class="dynamic-phone">(62) 99284-4334</span></li>
+          <li class="flex items-start gap-2"><i data-lucide="mail" class="w-4 h-4 text-gold-500 shrink-0 mt-0.5"></i><span class="dynamic-email">contato@marinacouto.adv.br</span></li>
+          <li class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-gold-500 shrink-0 mt-0.5"></i><span class="dynamic-address">Setor Universitário, Goiânia/GO</span></li>
+        </ul>
+        <div class="flex items-center gap-3 mt-4">
+          <a data-social="instagram" href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-navy-900 hover:bg-gold-500 hover:text-navy-950 text-slate-300 flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+          <a data-social="linkedin" href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-navy-900 hover:bg-gold-500 hover:text-navy-950 text-slate-300 flex items-center justify-center transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+          <a data-social="facebook" href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-navy-900 hover:bg-gold-500 hover:text-navy-950 text-slate-300 flex items-center justify-center transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+      <p>&copy; <span id="current-year"></span> Marina Couto Advocacia. Todos os direitos reservados.</p>
+      <div class="flex items-center gap-2">
+        <p class="hidden sm:block">Este site não é afiliado ao INSS.</p>
+        <button onclick="openAdminLogin()" title="Painel Administrativo" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-navy-900 text-slate-500 hover:text-gold-400 transition-colors cursor-pointer" aria-label="Painel Admin">
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <span class="text-[10px] uppercase tracking-wider">Admin</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== WHATSAPP FLUTUANTE ==================== -->
+<a href="#" onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Vim pelo site e gostaria de atendimento.'); return false;"
+   class="fixed bottom-6 right-6 z-30 w-14 h-14 sm:w-16 sm:h-16 bg-[#16A34A] hover:bg-[#15803D] text-white rounded-full flex items-center justify-center shadow-2xl transition-all transform hover:scale-105 whatsapp-pulse"
+   aria-label="Falar no WhatsApp">
+  <svg class="w-7 h-7 sm:w-8 sm:h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.661 1.435 5.174L2 22l4.985-1.399C8.445 21.487 10.163 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+</a>
+
+<!-- ==================== MODAL LOGIN ADMIN ==================== -->
+<div id="admin-login-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-navy-950/70 backdrop-blur-sm">
+  <div class="bg-white rounded-2xl max-w-sm w-full shadow-2xl overflow-hidden">
+    <div class="bg-navy-900 px-6 py-5 text-center">
+      <div class="w-12 h-12 mx-auto rounded-xl bg-navy-950 border border-gold-500/40 flex items-center justify-center p-1.5 mb-3">
+        <i data-lucide="lock" class="w-6 h-6 text-gold-400"></i>
+      </div>
+      <h3 class="font-serif text-lg font-bold text-white">Painel Administrativo</h3>
+      <p class="text-gold-400 text-[10px] uppercase tracking-widest mt-1">Acesso Restrito</p>
+    </div>
+    <form onsubmit="handleAdminLogin(event)" class="p-6 space-y-4">
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Senha</label>
+        <div class="relative">
+          <input type="password" id="admin-password-input" required autocomplete="current-password" placeholder="••••••••"
+                 class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none text-sm pr-10">
+          <button type="button" onclick="togglePwVisibility('admin-password-input')" class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-700" aria-label="Mostrar senha">
+            <i data-lucide="eye" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+      <p id="admin-login-error" class="hidden text-xs text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">Senha incorreta. Tente novamente.</p>
+      <div class="flex gap-2">
+        <button type="button" onclick="closeAdminLogin()" class="flex-1 border border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold text-sm py-2.5 rounded-xl transition-colors cursor-pointer">Cancelar</button>
+        <button type="submit" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-bold text-sm py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+          <i data-lucide="log-in" class="w-4 h-4 text-gold-400"></i> Entrar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ==================== PAINEL ADMIN ==================== -->
+<div id="admin-panel" class="fixed inset-0 z-[70] hidden bg-slate-100 overflow-y-auto">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-navy-900 flex items-center justify-center border border-gold-500/40 p-1.5">
+          <svg viewBox="0 0 120 80" class="w-full h-full stroke-gold-400 fill-none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 66 V16 L36 46 L60 16 V66" />
+            <path d="M106 24 C95 13, 73 13, 64 26" />
+            <path d="M64 54 C73 67, 95 67, 106 56" />
+          </svg>
+        </div>
+        <div>
+          <p class="font-serif font-bold text-navy-900 leading-none text-sm">Painel Admin</p>
+          <p class="text-[10px] uppercase tracking-widest text-gold-600 mt-0.5">Marina Couto</p>
+        </div>
+      </div>
+      <button onclick="closeAdminPanel()" class="inline-flex items-center gap-1.5 text-sm text-red-600 hover:bg-red-50 px-3 py-2 rounded-lg transition-colors cursor-pointer">
+        <i data-lucide="log-out" class="w-4 h-4"></i> Sair
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <div class="mb-5 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-start gap-2 text-xs text-amber-900">
+      <i data-lucide="shield-alert" class="w-4 h-4 shrink-0 mt-0.5 text-amber-600"></i>
+      <span>As alterações são salvas no navegador (localStorage). Para que todos os visitantes vejam, é necessário um servidor/CMS. Para uso local e testes, tudo funciona perfeitamente.</span>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-5">
+      <button data-atab="geral" onclick="switchAdminTab('geral')" class="admin-tab inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors bg-navy-900 text-white">
+        <i data-lucide="settings" class="w-3.5 h-3.5"></i> Geral
+      </button>
+      <button data-atab="fotos" onclick="switchAdminTab('fotos')" class="admin-tab inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors text-slate-600 hover:bg-slate-200">
+        <i data-lucide="image" class="w-3.5 h-3.5"></i> Fotos
+      </button>
+      <button data-atab="contato" onclick="switchAdminTab('contato')" class="admin-tab inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors text-slate-600 hover:bg-slate-200">
+        <i data-lucide="phone" class="w-3.5 h-3.5"></i> Contato
+      </button>
+      <button data-atab="seguranca" onclick="switchAdminTab('seguranca')" class="admin-tab inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors text-slate-600 hover:bg-slate-200">
+        <i data-lucide="shield" class="w-3.5 h-3.5"></i> Segurança
+      </button>
+    </div>
+
+    <div id="atab-geral" class="admin-tab-content bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="font-serif text-lg font-bold text-navy-900 mb-4">Informações Gerais</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">OAB</label>
+          <input id="adm-oab" type="text" placeholder="OAB/GO 56.049" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Cidade / UF</label>
+          <input id="adm-city" type="text" placeholder="Goiânia/GO" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">WhatsApp (só dígitos, com DDI)</label>
+          <input id="adm-whatsapp" type="text" placeholder="5562992844334" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+          <p class="text-xs text-slate-400 mt-1">Ex: <code>5562992844334</code> (Brasil + DDD + número)</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="atab-fotos" class="admin-tab-content hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="font-serif text-lg font-bold text-navy-900 mb-1">Fotos do Site</h2>
+      <p class="text-xs text-slate-500 mb-4">Comprimidas e salvas automaticamente.</p>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-navy-900 text-sm mb-2">Foto Hero</h3>
+          <div class="relative aspect-square bg-slate-100 rounded-xl overflow-hidden border-2 border-dashed border-slate-300 mb-2">
+            <img id="adm-preview-hero" class="hidden absolute inset-0 w-full h-full object-cover object-top" alt="">
+            <div id="adm-ph-hero" class="absolute inset-0 flex items-center justify-center text-slate-400"><i data-lucide="image-plus" class="w-8 h-8"></i></div>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" onclick="document.getElementById('adm-file-hero').click()" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white text-xs font-semibold px-3 py-2 rounded-lg inline-flex items-center justify-center gap-1.5 cursor-pointer"><i data-lucide="upload" class="w-3.5 h-3.5 text-gold-400"></i> Enviar</button>
+            <button type="button" onclick="removeAdmPhoto('hero')" id="adm-rm-hero" class="hidden bg-red-50 hover:bg-red-100 text-red-600 px-2.5 py-2 rounded-lg cursor-pointer"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+          </div>
+          <input type="file" id="adm-file-hero" accept="image/*" class="hidden" onchange="handleAdmPhoto('hero', this.files[0])">
+        </div>
+        <div>
+          <h3 class="font-semibold text-navy-900 text-sm mb-2">Foto Sobre</h3>
+          <div class="relative aspect-square bg-slate-100 rounded-xl overflow-hidden border-2 border-dashed border-slate-300 mb-2">
+            <img id="adm-preview-sobre" class="hidden absolute inset-0 w-full h-full object-cover object-top" alt="">
+            <div id="adm-ph-sobre" class="absolute inset-0 flex items-center justify-center text-slate-400"><i data-lucide="image-plus" class="w-8 h-8"></i></div>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" onclick="document.getElementById('adm-file-sobre').click()" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white text-xs font-semibold px-3 py-2 rounded-lg inline-flex items-center justify-center gap-1.5 cursor-pointer"><i data-lucide="upload" class="w-3.5 h-3.5 text-gold-400"></i> Enviar</button>
+            <button type="button" onclick="removeAdmPhoto('sobre')" id="adm-rm-sobre" class="hidden bg-red-50 hover:bg-red-100 text-red-600 px-2.5 py-2 rounded-lg cursor-pointer"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+          </div>
+          <input type="file" id="adm-file-sobre" accept="image/*" class="hidden" onchange="handleAdmPhoto('sobre', this.files[0])">
+        </div>
+      </div>
+    </div>
+
+    <div id="atab-contato" class="admin-tab-content hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="font-serif text-lg font-bold text-navy-900 mb-4">Contato & Redes</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Telefone</label>
+          <input id="adm-phone" type="text" placeholder="(62) 99284-4334" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">E-mail</label>
+          <input id="adm-email" type="email" placeholder="contato@marinacouto.adv.br" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Endereço</label>
+          <input id="adm-address" type="text" placeholder="Setor Universitário, Goiânia/GO" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Instagram</label>
+          <input id="adm-instagram" type="url" placeholder="https://instagram.com/..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">LinkedIn</label>
+          <input id="adm-linkedin" type="url" placeholder="https://linkedin.com/in/..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Facebook</label>
+          <input id="adm-facebook" type="url" placeholder="https://facebook.com/..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+      </div>
+    </div>
+
+    <div id="atab-seguranca" class="admin-tab-content hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="font-serif text-lg font-bold text-navy-900 mb-1">Alterar Senha do Painel</h2>
+      <p class="text-xs text-slate-500 mb-4">A senha é salva no navegador. Se esquecer, é possível resetar limpando o localStorage.</p>
+      <form onsubmit="changePassword(event)" class="space-y-4 max-w-sm">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Senha Atual</label>
+          <input type="password" id="pw-current" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Nova Senha (mín. 4 caracteres)</label>
+          <input type="password" id="pw-new" required minlength="4" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Confirmar Nova Senha</label>
+          <input type="password" id="pw-confirm" required minlength="4" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-gold-500 outline-none text-sm">
+        </div>
+        <p id="pw-msg" class="hidden text-xs rounded-lg px-3 py-2"></p>
+        <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold text-sm py-2.5 rounded-xl transition-colors cursor-pointer inline-flex items-center justify-center gap-1.5">
+          <i data-lucide="key-round" class="w-4 h-4 text-gold-400"></i> Alterar Senha
+        </button>
+      </form>
+    </div>
+
+    <div class="mt-5 bg-white rounded-2xl border border-slate-200 p-4 flex flex-col sm:flex-row gap-2 sm:justify-end">
+      <button onclick="resetAllData()" class="inline-flex items-center justify-center gap-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold text-sm px-4 py-2.5 rounded-xl transition-colors cursor-pointer">
+        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Restaurar Padrões
+      </button>
+      <button onclick="saveAllData()" class="inline-flex items-center justify-center gap-1.5 bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-colors cursor-pointer">
+        <i data-lucide="save" class="w-4 h-4"></i> Salvar Alterações
+      </button>
+    </div>
+  </main>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-navy-900 text-white px-5 py-3 rounded-xl shadow-2xl z-[80] flex items-center gap-2 text-sm"></div>
+
+<!-- INPUT FILE GLOBAL -->
+<input type="file" id="slot-file-input" accept="image/*" class="hidden">
+
+<script>
+/* ============================================================
+   CONFIG E ESTADO
+============================================================ */
+const DEFAULT_PASSWORD = 'admin123';
+const DEFAULT_DATA = {
+  oab: 'OAB/GO 56.049',
+  city: 'Goiânia/GO',
+  whatsapp: '5562992844334',
+  phone: '(62) 99284-4334',
+  email: 'contato@marinacouto.adv.br',
+  address: 'Setor Universitário, Goiânia/GO',
+  instagram: '',
+  linkedin: '',
+  facebook: ''
+};
+let slotUploadTarget = null;
+let triageData = { benefit: '', situation: '' };
+let _toastTimer;
+
+/* ============================================================
+   WHATSAPP
+============================================================ */
+function openWhatsAppDirect(msg) {
+  const num = localStorage.getItem('mc_whatsapp') || DEFAULT_DATA.whatsapp;
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* ============================================================
+   APLICAR DADOS SALVOS
+============================================================ */
+function applySavedData() {
+  const set = (sel, val) => document.querySelectorAll(sel).forEach(el => el.textContent = val);
+
+  // OAB com validação defensiva
+  const rawOab = localStorage.getItem('mc_oab');
+  const oabValida = rawOab && rawOab.trim() !== '' &&
+                    !/^[0\s\/.-]*0+[0\s\/.-]*$/i.test(rawOab) &&
+                    !/^oab$/i.test(rawOab.trim());
+  set('.dynamic-oab', oabValida ? rawOab : DEFAULT_DATA.oab);
+
+  const city = localStorage.getItem('mc_city') || DEFAULT_DATA.city;
+  set('.dynamic-city', city);
+
+  const phone = localStorage.getItem('mc_phone') || DEFAULT_DATA.phone;
+  set('.dynamic-phone', phone);
+
+  const email = localStorage.getItem('mc_email') || DEFAULT_DATA.email;
+  set('.dynamic-email', email);
+
+  const address = localStorage.getItem('mc_address') || DEFAULT_DATA.address;
+  set('.dynamic-address', address);
+
+  ['instagram','linkedin','facebook'].forEach(s => {
+    const link = document.querySelector(`[data-social="${s}"]`);
+    const url = localStorage.getItem('mc_' + s);
+    if (link && url) { link.href = url; link.target = '_blank'; link.rel = 'noopener'; }
+  });
+
+  applyPhoto('hero');
+  applyPhoto('sobre');
+}
+
+function applyPhoto(slot) {
+  const data = localStorage.getItem('mc_photo_' + slot);
+  const img = document.getElementById('slot-img-' + slot);
+  const fb = document.getElementById('slot-fallback-' + slot);
+  if (!img) return;
+  if (data) {
+    img.src = data;
+    img.classList.remove('hidden');
+    if (fb) fb.classList.add('hidden');
+  }
+}
+
+/* ============================================================
+   MENU MOBILE
+============================================================ */
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('hidden');
+  this.querySelector('i').setAttribute('data-lucide', menu.classList.contains('hidden') ? 'menu' : 'x');
+  lucide.createIcons();
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('mobile-menu-btn').querySelector('i').setAttribute('data-lucide', 'menu');
+    lucide.createIcons();
+  });
+});
+
+/* ============================================================
+   TRIAGEM
+============================================================ */
+function chooseBenefit(b) {
+  triageData.benefit = b;
+  document.getElementById('selected-benefit-badge').textContent = b;
+  document.getElementById('summary-benefit').textContent = b;
+  goToStep(2);
+}
+function chooseSituation(s) {
+  triageData.situation = s;
+  document.getElementById('summary-situation').textContent = s;
+  goToStep(3);
+}
+function goToStep(n) {
+  [1,2,3].forEach(i => document.getElementById('triage-step-' + i).classList.add('hidden'));
+  document.getElementById('triage-step-' + n).classList.remove('hidden');
+  document.getElementById('step-indicator-text').textContent = `Passo ${n} de 3`;
+  document.getElementById('step-progress-bar').style.width = (n === 1 ? 33.33 : n === 2 ? 66.66 : 100) + '%';
+  lucide.createIcons();
+}
+function selectTopicAndScroll(topic) {
+  triageData.benefit = topic;
+  document.getElementById('selected-benefit-badge').textContent = topic;
+  document.getElementById('summary-benefit').textContent = topic;
+  document.getElementById('triagem-interativa').scrollIntoView({ behavior: 'smooth' });
+  goToStep(2);
+}
+function submitTriage(e) {
+  e.preventDefault();
+  const name = document.getElementById('client-name').value.trim();
+  const phone = document.getElementById('client-phone').value.trim();
+  if (!name || !phone) return;
+  const msg = `*Ficha de Pré-Análise - Site*\n\n*Nome:* ${name}\n*WhatsApp:* ${phone}\n*Benefício:* ${triageData.benefit || '—'}\n*Situação:* ${triageData.situation || '—'}\n\nGostaria de dar continuidade.`;
+  openWhatsAppDirect(msg);
+}
+
+/* ============================================================
+   FAQ
+============================================================ */
+function toggleFaq(btn) {
+  const content = btn.nextElementSibling;
+  const icon = btn.querySelector('i');
+  const wasHidden = content.classList.contains('hidden');
+  document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('.faq-toggle i').forEach(el => el.style.transform = '');
+  if (wasHidden) {
+    content.classList.remove('hidden');
+    icon.style.transform = 'rotate(180deg)';
+  }
+}
+
+/* ============================================================
+   UPLOAD DE FOTO — clique no site
+============================================================ */
+function triggerSlotUpload(slot) {
+  slotUploadTarget = slot;
+  document.getElementById('slot-file-input').click();
+}
+document.getElementById('slot-file-input').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file && slotUploadTarget) processSlotPhoto(slotUploadTarget, file);
+  this.value = '';
+});
+function handleSlotDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function handleSlotDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function handleSlotDrop(e, slot) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) processSlotPhoto(slot, file);
+}
+async function processSlotPhoto(slot, file) {
+  if (!file.type.startsWith('image/')) { showToast('Selecione uma imagem.', 'error'); return; }
+  if (file.size > 8 * 1024 * 1024) { showToast('Imagem muito grande (máx 8MB).', 'error'); return; }
+  try {
+    showToast('Processando imagem...', 'info');
+    const compressed = await compressImage(file);
+    localStorage.setItem('mc_photo_' + slot, compressed);
+    applyPhoto(slot);
+    if (!document.getElementById('admin-panel').classList.contains('hidden')) {
+      refreshAdmPhotoPreviews();
+    }
+    showToast('Foto salva com sucesso!', 'success');
+  } catch (err) {
+    showToast('Erro ao processar. Tente outra imagem.', 'error');
+  }
+}
+function handleImageFallback(img, slot) {
+  img.classList.add('hidden');
+  const fb = document.getElementById('slot-fallback-' + slot);
+  if (fb) fb.classList.remove('hidden');
+}
+
+/* ============================================================
+   COMPRESSÃO
+============================================================ */
+function compressImage(file, maxSize = 1200, quality = 0.85) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxSize || height > maxSize) {
+          if (width > height) { height = Math.round(height * maxSize / width); width = maxSize; }
+          else { width = Math.round(width * maxSize / height); height = maxSize; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = () => reject(new Error('Imagem inválida'));
+      img.src = ev.target.result;
+    };
+    reader.onerror = () => reject(new Error('Falha ao ler'));
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ============================================================
+   ADMIN — LOGIN
+============================================================ */
+function getAdminPassword() {
+  return localStorage.getItem('mc_admin_password') || DEFAULT_PASSWORD;
+}
+function togglePwVisibility(id) {
+  const el = document.getElementById(id);
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
+function openAdminLogin() {
+  document.getElementById('admin-login-modal').classList.remove('hidden');
+  document.getElementById('admin-login-modal').classList.add('flex');
+  setTimeout(() => document.getElementById('admin-password-input').focus(), 100);
+  lucide.createIcons();
+}
+function closeAdminLogin() {
+  document.getElementById('admin-login-modal').classList.add('hidden');
+  document.getElementById('admin-login-modal').classList.remove('flex');
+  document.getElementById('admin-password-input').value = '';
+  document.getElementById('admin-login-error').classList.add('hidden');
+}
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const pw = document.getElementById('admin-password-input').value;
+  if (pw === getAdminPassword()) {
+    closeAdminLogin();
+    openAdminPanel();
+    showToast('Bem-vinda ao painel!', 'success');
+  } else {
+    document.getElementById('admin-login-error').classList.remove('hidden');
+    document.getElementById('admin-password-input').value = '';
+    document.getElementById('admin-password-input').focus();
+  }
+}
+document.getElementById('admin-login-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeAdminLogin();
+});
+
+/* ============================================================
+   ADMIN — PAINEL
+============================================================ */
+function openAdminPanel() {
+  document.getElementById('admin-panel').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  loadAdminData();
+  lucide.createIcons();
+}
+function closeAdminPanel() {
+  document.getElementById('admin-panel').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+function switchAdminTab(name) {
+  document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+  document.getElementById('atab-' + name).classList.remove('hidden');
+  document.querySelectorAll('.admin-tab').forEach(btn => {
+    btn.classList.remove('bg-navy-900', 'text-white');
+    btn.classList.add('text-slate-600', 'hover:bg-slate-200');
+  });
+  const active = document.querySelector(`[data-atab="${name}"]`);
+  active.classList.remove('text-slate-600', 'hover:bg-slate-200');
+  active.classList.add('bg-navy-900', 'text-white');
+  if (name === 'fotos') refreshAdmPhotoPreviews();
+}
+
+/* ============================================================
+   ADMIN — CARREGAR / SALVAR / RESETAR
+============================================================ */
+function loadAdminData() {
+  document.getElementById('adm-oab').value = localStorage.getItem('mc_oab') || DEFAULT_DATA.oab;
+  document.getElementById('adm-city').value = localStorage.getItem('mc_city') || DEFAULT_DATA.city;
+  document.getElementById('adm-whatsapp').value = localStorage.getItem('mc_whatsapp') || DEFAULT_DATA.whatsapp;
+  document.getElementById('adm-phone').value = localStorage.getItem('mc_phone') || DEFAULT_DATA.phone;
+  document.getElementById('adm-email').value = localStorage.getItem('mc_email') || DEFAULT_DATA.email;
+  document.getElementById('adm-address').value = localStorage.getItem('mc_address') || DEFAULT_DATA.address;
+  document.getElementById('adm-instagram').value = localStorage.getItem('mc_instagram') || DEFAULT_DATA.instagram;
+  document.getElementById('adm-linkedin').value = localStorage.getItem('mc_linkedin') || DEFAULT_DATA.linkedin;
+  document.getElementById('adm-facebook').value = localStorage.getItem('mc_facebook') || DEFAULT_DATA.facebook;
+  refreshAdmPhotoPreviews();
+}
+function refreshAdmPhotoPreviews() {
+  ['hero','sobre'].forEach(slot => {
+    const data = localStorage.getItem('mc_photo_' + slot);
+    const preview = document.getElementById('adm-preview-' + slot);
+    const ph = document.getElementById('adm-ph-' + slot);
+    const rm = document.getElementById('adm-rm-' + slot);
+    if (data) {
+      preview.src = data;
+      preview.classList.remove('hidden');
+      ph.classList.add('hidden');
+      rm.classList.remove('hidden');
+    } else {
+      preview.src = '';
+      preview.classList.add('hidden');
+      ph.classList.remove('hidden');
+      rm.classList.add('hidden');
+    }
+  });
+  lucide.createIcons();
+}
+function saveAllData() {
+  const map = {
+    mc_oab: 'adm-oab', mc_city: 'adm-city', mc_whatsapp: 'adm-whatsapp',
+    mc_phone: 'adm-phone', mc_email: 'adm-email', mc_address: 'adm-address',
+    mc_instagram: 'adm-instagram', mc_linkedin: 'adm-linkedin', mc_facebook: 'adm-facebook'
+  };
+  const wa = document.getElementById('adm-whatsapp').value.trim();
+  if (wa && !/^\d{10,15}$/.test(wa)) {
+    showToast('WhatsApp: apenas números (10-15 dígitos).', 'error');
+    return;
+  }
+  Object.entries(map).forEach(([key, id]) => {
+    const value = document.getElementById(id).value.trim();
+    if (value) localStorage.setItem(key, value);
+    else localStorage.removeItem(key);
+  });
+  applySavedData();
+  showToast('Alterações salvas!', 'success');
+}
+function resetAllData() {
+  if (!confirm('Restaurar todos os padrões? Fotos e senha personalizada serão removidas.')) return;
+  ['mc_oab','mc_city','mc_whatsapp','mc_phone','mc_email','mc_address',
+   'mc_instagram','mc_linkedin','mc_facebook','mc_photo_hero','mc_photo_sobre',
+   'mc_admin_password'].forEach(k => localStorage.removeItem(k));
+  // Recarregar site com padrões
+  location.reload();
+}
+
+/* ============================================================
+   ADMIN — FOTOS
+============================================================ */
+async function handleAdmPhoto(slot, file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  try {
+    showToast('Processando...', 'info');
+    const compressed = await compressImage(file);
+    localStorage.setItem('mc_photo_' + slot, compressed);
+    refreshAdmPhotoPreviews();
+    applyPhoto(slot);
+    showToast('Foto salva!', 'success');
+  } catch (err) {
+    showToast('Erro ao salvar.', 'error');
+  }
+}
+function removeAdmPhoto(slot) {
+  if (!confirm('Remover esta foto? O site voltará a exibir a imagem original.')) return;
+  localStorage.removeItem('mc_photo_' + slot);
+  refreshAdmPhotoPreviews();
+  const img = document.getElementById('slot-img-' + slot);
+  const fb = document.getElementById('slot-fallback-' + slot);
+  if (img) { img.src = 'img/marina-' + slot + '.jpg'; img.classList.remove('hidden'); }
+  if (fb) fb.classList.add('hidden');
+  showToast('Foto removida.', 'info');
+}
+
+/* ============================================================
+   ADMIN — ALTERAR SENHA
+============================================================ */
+function changePassword(e) {
+  e.preventDefault();
+  const cur = document.getElementById('pw-current').value;
+  const nw = document.getElementById('pw-new').value;
+  const cf = document.getElementById('pw-confirm').value;
+  const msg = document.getElementById('pw-msg');
+  const show = (text, ok) => {
+    msg.textContent = text;
+    msg.className = 'text-xs rounded-lg px-3 py-2 ' + (ok ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200');
+  };
+  if (cur !== getAdminPassword()) { show('Senha atual incorreta.', false); return; }
+  if (nw.length < 4) { show('Nova senha deve ter pelo menos 4 caracteres.', false); return; }
+  if (nw !== cf) { show('Confirmação não corresponde.', false); return; }
+  if (nw === cur) { show('Nova senha deve ser diferente da atual.', false); return; }
+  localStorage.setItem('mc_admin_password', nw);
+  document.querySelector('#atab-seguranca form').reset();
+  show('Senha alterada com sucesso!', true);
+  showToast('Senha alterada!', 'success');
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const colors = { success: 'bg-green-600', error: 'bg-red-600', info: 'bg-navy-900' };
+  const icons = { success: 'check-circle-2', error: 'alert-circle', info: 'info' };
+  toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 ' + colors[type] +
+    ' text-white px-5 py-3 rounded-xl shadow-2xl z-[80] flex items-center gap-2 text-sm';
+  toast.innerHTML = `<i data-lucide="${icons[type]}" class="w-4 h-4"></i><span>${msg}</span>`;
+  lucide.createIcons();
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => {
+    toast.className = 'hidden fixed bottom-6 left-1/2 -translate-x-1/2';
+  }, 2800);
+}
+
+/* ============================================================
+   INICIALIZAÇÃO
+============================================================ */
+document.getElementById('current-year').textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', applySavedData);
+lucide.createIcons();
+</script>
+
+</body>
+</html>
