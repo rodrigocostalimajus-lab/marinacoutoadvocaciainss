@@ -6,7 +6,11 @@ const initialTexts={oab:'OAB/GO 56.049',city:'Goiânia/GO',whatsapp:'55629928443
 const defaults={texts:initialTexts,photos:Object.fromEntries(Object.keys(slots).map(k=>[k,{enabled:true,path:'img/marina-'+k+'.jpg'}])),revision:'1'};
 const $=id=>document.getElementById(id);let token='',head='',draft=structuredClone(defaults),pending={},busy=false,ready=false,processing=0;
 function status(s,error=false){$('status').textContent=s;$('status').classList.toggle('error',error);}
-function buttons(){ $('publish').disabled=busy||!ready||!token||processing>0;$('connect').disabled=busy;$('disconnect').disabled=busy;$('restore').disabled=busy||!ready||processing>0;}
+function buttons(){
+document.body.classList.toggle(
+    'admin-locked', !(ready && token)
+);
+ $('publish').disabled=busy||!ready||!token||processing>0;$('connect').disabled=busy;$('disconnect').disabled=busy;$('restore').disabled=busy||!ready||processing>0;}
 function safePath(s){return typeof s==='string'&&/^img\/[a-z0-9-]+\.jpg$/.test(s);}
 function render(){const root=$('photo-grid');root.replaceChildren();for(const [key,label] of Object.entries(slots)){const card=document.createElement('article');card.className='photo'+(draft.photos[key].enabled?'':' off');const title=document.createElement('h3');title.textContent=label;const img=document.createElement('img');img.alt=label;img.src=pending[key]?.data||(safePath(draft.photos[key].path)?draft.photos[key].path+'?v='+encodeURIComponent(draft.revision||'1'):'');const check=document.createElement('input');check.type='checkbox';check.checked=!!draft.photos[key].enabled;const cl=document.createElement('label');cl.append(check,' Exibir no site');check.onchange=()=>{draft.photos[key].enabled=check.checked;card.classList.toggle('off',!check.checked);};const file=document.createElement('input');file.type='file';file.accept='image/jpeg,image/png,image/webp,image/avif';file.onchange=()=>select(key,file.files[0]);const reset=document.createElement('button');reset.textContent='Usar original';reset.onclick=()=>{delete pending[key];draft.photos[key]=structuredClone(defaults.photos[key]);render();};card.append(title,img,cl,file,reset);card.ondragover=e=>{e.preventDefault();card.classList.add('drop');};card.ondragleave=()=>card.classList.remove('drop');card.ondrop=e=>{e.preventDefault();card.classList.remove('drop');select(key,e.dataTransfer.files[0]);};root.append(card);}
 const tr=$('text-grid');tr.replaceChildren();for(const [k,label] of Object.entries(fields)){const wrap=document.createElement('label');wrap.textContent=label;const inp=document.createElement('input');inp.type=k==='email'?'email':(['instagram','linkedin','facebook'].includes(k)?'url':'text');inp.value=draft.texts[k]||'';inp.oninput=()=>draft.texts[k]=inp.value.trim();wrap.append(inp);tr.append(wrap);}buttons();}
@@ -16,8 +20,21 @@ function from64(s){return new TextDecoder().decode(Uint8Array.from(atob(s.replac
 function to64(s){const a=new TextEncoder().encode(s);let chunks=[];for(let i=0;i<a.length;i+=8192)chunks.push(String.fromCharCode(...a.subarray(i,i+8192)));return btoa(chunks.join(''));}
 function normalize(c){const out=structuredClone(defaults);for(const k of Object.keys(fields))if(typeof c.texts?.[k]==='string')out.texts[k]=c.texts[k];for(const k of Object.keys(slots)){const p=c.photos?.[k];if(p&&safePath(p.path))out.photos[k]={path:p.path,enabled:p.enabled!==false};}out.revision=String(c.revision||'1');return out;}
 $('eye').onclick=()=>{$('token').type=$('token').type==='password'?'text':'password';$('eye').textContent=$('token').type==='password'?'Mostrar':'Ocultar';};
-$('connect').onclick=async()=>{if(busy)return;const t=$('token').value.trim();if(!t){status('Informe o token.',true);return;}if((Object.keys(pending).length||ready)&&!confirm('Conectar carrega a versão atual do GitHub e descarta edições não publicadas. Continuar?'))return;token=t;$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';busy=true;buttons();try{const r=await request('/git/ref/heads/main');head=r.object.sha;const cfg=await request('/contents/personalizacao.json?ref='+encodeURIComponent(head));draft=normalize(JSON.parse(from64(cfg.content)));pending={};ready=true;render();status('Conectado ao repositório. As alterações serão publicadas na branch main.');}catch(e){token='';head='';status(e.message,true);}finally{busy=false;buttons();}};
-$('disconnect').onclick=()=>{token='';head='';$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';buttons();status('Desconectado. O token não foi armazenado.');};
+$('connect').onclick=async()=>{if(busy)return;const t=$('token').value.trim();if(!t){status('Informe o token.',true);return;}if((Object.keys(pending).length||ready)&&!confirm('Conectar carrega a versão atual do GitHub e descarta edições não publicadas. Continuar?'))return;ready=false;token=t;$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';busy=true;buttons();try{
+const auth=await fetch('https://api.github.com/user',{
+headers:{
+Authorization:'Bearer '+token,
+Accept:'application/vnd.github+json'
+},
+cache:'no-store'
+});
+if(!auth.ok)throw Error('Credencial invalida.');
+const account=await auth.json();
+if(account.login!=='rodrigocostalimajus-lab'){
+throw Error('Conta nao autorizada.');
+}
+const r=await request('/git/ref/heads/main');head=r.object.sha;const cfg=await request('/contents/personalizacao.json?ref='+encodeURIComponent(head));draft=normalize(JSON.parse(from64(cfg.content)));pending={};ready=true;render();status('Conectado ao repositório. As alterações serão publicadas na branch main.');}catch(e){token='';head='';status(e.message,true);}finally{busy=false;buttons();}};
+$('disconnect').onclick=()=>{ready=false;pending={};token='';head='';$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';buttons();status('Desconectado. O token não foi armazenado.');};
 
 function exitAdmin(){
     if(busy){
@@ -38,4 +55,10 @@ window.addEventListener('pageshow',e=>{
 $('restore').onclick=()=>{if(confirm('Restaurar textos e imagens originais na prévia?')){draft=structuredClone(defaults);pending={};render();status('Padrões restaurados na prévia. Publique para aplicar.');}};
 $('publish').onclick=async()=>{if(busy||!token||processing)return;if(!/^\d{10,15}$/.test(draft.texts.whatsapp)){status('WhatsApp deve conter 10 a 15 dígitos.',true);return;}for(const k of ['instagram','linkedin','facebook'])if(draft.texts[k]){try{if(new URL(draft.texts[k]).protocol!=='https:')throw Error();}catch{status('Use um endereço HTTPS válido em '+fields[k]+'.',true);return;}}if(!confirm('Publicar estas alterações para todos os visitantes?'))return;busy=true;buttons();try{status('Verificando versão e criando publicação…');const current=(await request('/git/ref/heads/main')).object.sha;if(current!==head)throw Error('O repositório mudou. Reconecte e revise antes de publicar.');const parent=await request('/git/commits/'+head);const config=structuredClone(draft);const changes=[];for(const [k,p] of Object.entries(pending)){const path='img/personalizada-'+k+'.jpg';const blob=await request('/git/blobs','POST',{content:p.data.split(',')[1],encoding:'base64'});changes.push({path,mode:'100644',type:'blob',sha:blob.sha});config.photos[k].path=path;}config.revision=String(Date.now());const configBlob=await request('/git/blobs','POST',{content:to64(JSON.stringify(config,null,2)+'\n'),encoding:'base64'});changes.push({path:'personalizacao.json',mode:'100644',type:'blob',sha:configBlob.sha});const tree=await request('/git/trees','POST',{base_tree:parent.tree.sha,tree:changes});const commit=await request('/git/commits','POST',{message:'Atualizar personalização Marina Couto',tree:tree.sha,parents:[head]});await request('/git/refs/heads/main','PATCH',{sha:commit.sha,force:false});head=commit.sha;draft=config;pending={};render();status('Alterações salvas no GitHub. Confira a implantação em Actions; a atualização pública depende do GitHub Pages.');}catch(e){status(e.message+' — Nenhuma publicação foi confirmada pelo painel.',true);}finally{busy=false;buttons();}};
 for(const b of document.querySelectorAll('[data-tab]'))b.onclick=()=>{for(const x of document.querySelectorAll('[data-tab]')){$(x.dataset.tab).hidden=x!==b;x.setAttribute('aria-selected',String(x===b));}};
-(async()=>{try{const r=await fetch('personalizacao.json',{cache:'no-store'});if(!r.ok)throw Error();draft=normalize(await r.json());ready=true;render();status('Prévia carregada. Conecte ao GitHub para publicar.');}catch{status('Não foi possível carregar a configuração. Conecte ao GitHub para recuperar a versão publicada.',true);render();}})();
+
+ready=false;
+buttons();
+status('Informe sua credencial para entrar no painel.');
+$('token').addEventListener('keydown',e=>{
+if(e.key==='Enter')$('connect').click();
+});
