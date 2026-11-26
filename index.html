@@ -69,15 +69,23 @@ tailwind.config = {
 <meta property="og:title" content="Marina Couto | Advocacia Previdenciária">
 <meta property="og:description" content="Aposentadorias, BPC/LOAS, Auxílio-Acidente e benefícios do INSS. Atendimento presencial e online.">
 <meta property="og:url" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/">
-<meta property="og:image" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/img/marina-whatsapp.jpg">
-<meta property="og:image:secure_url" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/img/marina-whatsapp.jpg">
+<meta property="og:image" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/img/marina-whatsapp-v2.jpg">
+<meta property="og:image:secure_url" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/img/marina-whatsapp-v2.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Marina Couto Advocacia Previdenciária">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Marina Couto | Advocacia Previdenciária">
-<meta name="twitter:image" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/img/marina-whatsapp.jpg">
+<meta name="twitter:image" content="https://rodrigocostalimajus-lab.github.io/marinacoutoadvocaciainss/img/marina-whatsapp-v2.jpg">
+<style id="mc-whatsapp-avatar-style">
+#mc-whatsapp-avatar{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;width:82px;height:82px;display:block;background:transparent;filter:drop-shadow(0 3px 6px #0005);transition:transform .2s ease;}
+#mc-whatsapp-avatar img{display:block;width:100%;height:100%;object-fit:contain;}
+#mc-whatsapp-avatar:hover{transform:scale(1.06)}
+#mc-whatsapp-avatar:focus-visible{outline:2px solid #C59B27;outline-offset:3px;border-radius:50%}
+@media(min-width:768px){#mc-whatsapp-avatar{width:96px;height:96px;right:24px;bottom:24px}}
+@media(prefers-reduced-motion:reduce){#mc-whatsapp-avatar{transition:none}}
+</style>
 </head>
 
 <body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-gold-500 selection:text-white">
@@ -696,10 +704,8 @@ tailwind.config = {
 </footer>
 
 <!-- ==================== WHATSAPP FLUTUANTE ==================== -->
-<a href="#" onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Vim pelo site e gostaria de atendimento.'); return false;"
-   class="fixed bottom-6 right-6 z-30 w-14 h-14 sm:w-16 sm:h-16 bg-[#16A34A] hover:bg-[#15803D] text-white rounded-full flex items-center justify-center shadow-2xl transition-all transform hover:scale-105 whatsapp-pulse"
-   aria-label="Falar no WhatsApp">
-  <svg class="w-7 h-7 sm:w-8 sm:h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.661 1.435 5.174L2 22l4.985-1.399C8.445 21.487 10.163 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+<a id="mc-whatsapp-avatar" href="#" onclick="openWhatsAppDirect('Olá, Dra. Marina Couto! Vim pelo site e gostaria de atendimento.'); return false;" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp">
+  <img src="img/marina-avatar.png" alt="" width="320" height="320" decoding="async">
 </a>
 
 
