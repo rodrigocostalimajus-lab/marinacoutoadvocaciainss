@@ -18,6 +18,23 @@ function normalize(c){const out=structuredClone(defaults);for(const k of Object.
 $('eye').onclick=()=>{$('token').type=$('token').type==='password'?'text':'password';$('eye').textContent=$('token').type==='password'?'Mostrar':'Ocultar';};
 $('connect').onclick=async()=>{if(busy)return;const t=$('token').value.trim();if(!t){status('Informe o token.',true);return;}if((Object.keys(pending).length||ready)&&!confirm('Conectar carrega a versão atual do GitHub e descarta edições não publicadas. Continuar?'))return;token=t;$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';busy=true;buttons();try{const r=await request('/git/ref/heads/main');head=r.object.sha;const cfg=await request('/contents/personalizacao.json?ref='+encodeURIComponent(head));draft=normalize(JSON.parse(from64(cfg.content)));pending={};ready=true;render();status('Conectado ao repositório. As alterações serão publicadas na branch main.');}catch(e){token='';head='';status(e.message,true);}finally{busy=false;buttons();}};
 $('disconnect').onclick=()=>{token='';head='';$('token').value='';$('token').type='password';$('eye').textContent='Mostrar';buttons();status('Desconectado. O token não foi armazenado.');};
+
+function exitAdmin(){
+    if(busy){
+        alert('Publicacao em andamento.');
+        return;
+    }
+    if(!confirm('Sair do painel? Alteracoes nao publicadas serao descartadas.'))return;
+    $('disconnect').click();
+    location.replace('./');
+}
+$('exit-admin').onclick=exitAdmin;
+$('exit-bottom').onclick=exitAdmin;
+
+window.addEventListener('pageshow',e=>{
+    if(e.persisted)location.reload();
+});
+
 $('restore').onclick=()=>{if(confirm('Restaurar textos e imagens originais na prévia?')){draft=structuredClone(defaults);pending={};render();status('Padrões restaurados na prévia. Publique para aplicar.');}};
 $('publish').onclick=async()=>{if(busy||!token||processing)return;if(!/^\d{10,15}$/.test(draft.texts.whatsapp)){status('WhatsApp deve conter 10 a 15 dígitos.',true);return;}for(const k of ['instagram','linkedin','facebook'])if(draft.texts[k]){try{if(new URL(draft.texts[k]).protocol!=='https:')throw Error();}catch{status('Use um endereço HTTPS válido em '+fields[k]+'.',true);return;}}if(!confirm('Publicar estas alterações para todos os visitantes?'))return;busy=true;buttons();try{status('Verificando versão e criando publicação…');const current=(await request('/git/ref/heads/main')).object.sha;if(current!==head)throw Error('O repositório mudou. Reconecte e revise antes de publicar.');const parent=await request('/git/commits/'+head);const config=structuredClone(draft);const changes=[];for(const [k,p] of Object.entries(pending)){const path='img/personalizada-'+k+'.jpg';const blob=await request('/git/blobs','POST',{content:p.data.split(',')[1],encoding:'base64'});changes.push({path,mode:'100644',type:'blob',sha:blob.sha});config.photos[k].path=path;}config.revision=String(Date.now());const configBlob=await request('/git/blobs','POST',{content:to64(JSON.stringify(config,null,2)+'\n'),encoding:'base64'});changes.push({path:'personalizacao.json',mode:'100644',type:'blob',sha:configBlob.sha});const tree=await request('/git/trees','POST',{base_tree:parent.tree.sha,tree:changes});const commit=await request('/git/commits','POST',{message:'Atualizar personalização Marina Couto',tree:tree.sha,parents:[head]});await request('/git/refs/heads/main','PATCH',{sha:commit.sha,force:false});head=commit.sha;draft=config;pending={};render();status('Alterações salvas no GitHub. Confira a implantação em Actions; a atualização pública depende do GitHub Pages.');}catch(e){status(e.message+' — Nenhuma publicação foi confirmada pelo painel.',true);}finally{busy=false;buttons();}};
 for(const b of document.querySelectorAll('[data-tab]'))b.onclick=()=>{for(const x of document.querySelectorAll('[data-tab]')){$(x.dataset.tab).hidden=x!==b;x.setAttribute('aria-selected',String(x===b));}};
