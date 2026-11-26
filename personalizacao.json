@@ -1,0 +1,44 @@
+{
+  "texts": {
+    "oab": "OAB/GO 56.049",
+    "city": "Goiânia/GO",
+    "whatsapp": "5562992844334",
+    "phone": "(62) 99284-4334",
+    "email": "contato@marinacouto.adv.br",
+    "address": "Setor Universitário, Goiânia/GO",
+    "instagram": "",
+    "linkedin": "",
+    "facebook": ""
+  },
+  "photos": {
+    "hero": {
+      "enabled": true,
+      "path": "img/marina-hero.jpg"
+    },
+    "logo": {
+      "enabled": true,
+      "path": "img/marina-logo.jpg"
+    },
+    "sobre": {
+      "enabled": true,
+      "path": "img/marina-sobre.jpg"
+    },
+    "team": {
+      "enabled": true,
+      "path": "img/marina-team.jpg"
+    },
+    "entry": {
+      "enabled": true,
+      "path": "img/marina-entry.jpg"
+    },
+    "office": {
+      "enabled": true,
+      "path": "img/marina-office.jpg"
+    },
+    "facade": {
+      "enabled": true,
+      "path": "img/marina-facade.jpg"
+    }
+  },
+  "revision": "1"
+}
