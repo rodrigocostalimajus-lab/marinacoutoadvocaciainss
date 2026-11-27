@@ -44,7 +44,7 @@ function exitAdmin(event){
     pending={};
     document.body.classList.add('admin-locked');
     document.getElementById('token').value='';
-    window.location.replace('/marinacoutoadvocaciainss/');
+    window.location.replace(window.location.origin + '/');
 }
 $('exit-admin').onclick=exitAdmin;
 $('exit-bottom').onclick=exitAdmin;
